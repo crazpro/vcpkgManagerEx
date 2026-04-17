@@ -51,7 +51,9 @@ namespace vcpkgManager.Common
         public bool setupVcpkg(string vcpkgDir)
         {
             if (SoftwareChecker.checkTargetVcpkg(vcpkgDir) == false)
+            {
                 return false;
+            }
 
             VcpkgPath = vcpkgDir + "\\vcpkg.exe";
             return true;
@@ -137,20 +139,49 @@ namespace vcpkgManager.Common
             ShowProcessFrm.RunShell(VcpkgPath, "install " + pkname);
         }
 
+
+        /// <summary>
+        /// 检索VCPKG
+        /// </summary>
+        /// <param name="searchKey"></param>
+        /// <returns></returns>
         public async Task<ArrayList> searchVcpkg(string searchKey)
         {
             ArrayList ctxt = new ArrayList();
             var context = await runVcpkg("search " + searchKey);
-            var lines = context.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            var lines = context.Split(new string[] { "\r\n", "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries);
 
             if (lines.Length <= 2)
-                return ctxt;
-
-            foreach(var inLine in lines)
             {
+                return ctxt;
+            }
+
+            foreach (var inLine in lines)
+            {
+                string strName = "";  //类库名称
+                string strversion = "";  //版本号
+                string strDesc = "";  //描述
+
                 var varData = inLine.Split(new string[] { "  " }, StringSplitOptions.RemoveEmptyEntries);
                 if (varData.Length >= 3)
-                    ctxt.Add(varData);
+                {
+                    strName = varData[0].Trim();
+                    strversion = varData[1].Trim();
+                    strDesc = varData[2].Trim();
+                }
+                else if (varData.Length == 2)
+                {
+                    strName = varData[0].Trim();
+                    strversion = "";
+                    strDesc = varData[1].Trim();
+                }
+                else
+                {
+                    continue;
+                }
+
+                ctxt.Add(new[] { strName, strversion, strDesc });
+
             }
 
             return ctxt;
@@ -177,16 +208,20 @@ namespace vcpkgManager.Common
             var context = await getVcpkgList();
 
             if (context.Contains("No packages are installed"))
+            {
                 return ctxt;
+            }
 
-            var lines = context.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            var lines = context.Split(new string[] { "\r\n", "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries);
             if(lines.Length > 0)
             {
                 foreach(var inLine in lines)
                 {
                     var varData = inLine.Split(new string[] { "  " }, StringSplitOptions.RemoveEmptyEntries);
                     if (varData.Length >= 3)
+                    {
                         ctxt.Add(varData);
+                    }
                 }
             }
 

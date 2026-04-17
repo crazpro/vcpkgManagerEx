@@ -46,6 +46,9 @@ namespace vcpkgManager.Common
 
                     ownerProc.StartInfo.RedirectStandardError = true;
                     ownerProc.ErrorDataReceived += recvHander; // 进行重定向
+
+                    ownerProc.StartInfo.StandardOutputEncoding = Encoding.GetEncoding("GBK");
+                    ownerProc.StartInfo.StandardErrorEncoding = Encoding.GetEncoding("GBK");
                 }
 
                 bool isRet = ownerProc.Start(); // 运行
@@ -92,13 +95,14 @@ namespace vcpkgManager.Common
             nowProc.StartInfo.RedirectStandardOutput = true;
             nowProc.StartInfo.RedirectStandardError = true;
             nowProc.Start();
+            string output = nowProc.StandardOutput.ReadToEnd();
+            string error = nowProc.StandardError.ReadToEnd();
             nowProc.WaitForExit();
 
-            string retScmd = nowProc.StandardOutput.ReadToEnd(); // 读取全部内容
 
             nowProc.Close();
 
-            return retScmd;
+            return output;
         }
 
         /// <summary>
@@ -109,7 +113,9 @@ namespace vcpkgManager.Common
             if (ownerProc != null)
             {
                 if(ownerProc.HasExited == false)
+                {
                     ownerProc.Kill(); // 关闭程序
+                }
 
                 ownerProc.Close();
                 ownerProc = null;

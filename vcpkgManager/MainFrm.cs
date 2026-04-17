@@ -54,11 +54,23 @@ namespace vcpkgManager
             GetVcpkg();
         }
 
+
+        /// <summary>
+        /// 刷新已安装列表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReflush_Click(object sender, EventArgs e)
         {
             GetVcpkg();
         }
 
+
+        /// <summary>
+        /// 移除指定的安装包
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void btnRemovePkg_Click(object sender, EventArgs e)
         {
             if(pkglistView.SelectedItems.Count > 0)
@@ -73,6 +85,12 @@ namespace vcpkgManager
             GetVcpkg();
         }
 
+
+        /// <summary>
+        /// 检索按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void btnSearch_Click(object sender, EventArgs e)
         {
             searchlistView.Items.Clear();
@@ -106,7 +124,7 @@ namespace vcpkgManager
             }
 
             ArrayList platformArr = new ArrayList();
-            for(int i = 0;i < platformChkBox.Items.Count;i++)
+            for(int i = 0;i < platformChkBox.Items.Count; i++)
             {
                 if (platformChkBox.GetItemChecked(i))
                 {

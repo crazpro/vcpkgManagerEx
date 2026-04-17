@@ -23,17 +23,23 @@ namespace vcpkgManager.Common
                 if (nPos != -1)
                 {
                     if (File.Exists(val + "\\git.exe"))
+                    {
                         return val + "\\git.exe";
+                    }
                 }
             }
 
             return "";
         }
+
+
         // 检测Git是否安装
         public static bool checkGit()
         {
             if (getGitPath() != "")
+            {
                 return true;
+            }
 
             return false;
         }

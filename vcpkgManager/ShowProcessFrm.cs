@@ -48,7 +48,8 @@ namespace vcpkgManager
             if (runLogs.InvokeRequired)
             {
                 runLogs.Invoke(new EventHandler(ExitEventHander), new object[] { sender, e });
-            }else
+            }
+            else
             {
                 runLogs.AppendText("运行结束，请手动关闭窗口。");
                 btnClosed.Text = "关闭窗口";
