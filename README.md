@@ -1,5 +1,7 @@
 ## vcpkg管理工具集 Gui
 
+## 感谢原始作者 koangel 提供的初始版本！
+
 工具主要用于快速安装vcpkg以及针对vcpkg之间的管理行为。
 
 功能集：
@@ -80,3 +82,10 @@ x86-windows-static.cmake
 x86-windows.cmake
 ```
 
+程序截图:
+
+![image](Img/33228004-5e6b-41f8-a4c7-9d8e6d2a2fee.png)
+
+![image](Img/7567df83-1759-4726-83a7-724aa88023e5.png)
+
+![image](Img/db2fef96-ccaf-48cc-b7b3-c60ae262f5fd.png)

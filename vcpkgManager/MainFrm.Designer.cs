@@ -30,26 +30,26 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnReflush = new System.Windows.Forms.Button();
+            this.btnRemovePkg = new System.Windows.Forms.Button();
             this.pkglistView = new System.Windows.Forms.ListView();
             this.pkgName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pkgText = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pkgVer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnRemovePkg = new System.Windows.Forms.Button();
+            this.pkgText = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtSearchKey = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.platformChkBox = new System.Windows.Forms.CheckedListBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnSetup = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnReflush = new System.Windows.Forms.Button();
-            this.btnInstallAll = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.searchlistView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnSetup = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.platformChkBox = new System.Windows.Forms.CheckedListBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearchKey = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnInstallAll = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -67,6 +67,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "包列表";
             // 
+            // btnReflush
+            // 
+            this.btnReflush.Location = new System.Drawing.Point(6, 471);
+            this.btnReflush.Name = "btnReflush";
+            this.btnReflush.Size = new System.Drawing.Size(150, 23);
+            this.btnReflush.TabIndex = 2;
+            this.btnReflush.Text = "刷新列表";
+            this.btnReflush.UseVisualStyleBackColor = true;
+            this.btnReflush.Click += new System.EventHandler(this.btnReflush_Click);
+            // 
+            // btnRemovePkg
+            // 
+            this.btnRemovePkg.Location = new System.Drawing.Point(259, 471);
+            this.btnRemovePkg.Name = "btnRemovePkg";
+            this.btnRemovePkg.Size = new System.Drawing.Size(150, 23);
+            this.btnRemovePkg.TabIndex = 1;
+            this.btnRemovePkg.Text = "移除选择包";
+            this.btnRemovePkg.UseVisualStyleBackColor = true;
+            this.btnRemovePkg.Click += new System.EventHandler(this.btnRemovePkg_Click);
+            // 
             // pkglistView
             // 
             this.pkglistView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -76,6 +96,7 @@
             this.pkgText});
             this.pkglistView.FullRowSelect = true;
             this.pkglistView.GridLines = true;
+            this.pkglistView.HideSelection = false;
             this.pkglistView.Location = new System.Drawing.Point(6, 20);
             this.pkglistView.MultiSelect = false;
             this.pkglistView.Name = "pkglistView";
@@ -89,25 +110,15 @@
             this.pkgName.Text = "包名称";
             this.pkgName.Width = 100;
             // 
-            // pkgText
-            // 
-            this.pkgText.Text = "包描述";
-            this.pkgText.Width = 200;
-            // 
             // pkgVer
             // 
             this.pkgVer.Text = "版本号";
             this.pkgVer.Width = 100;
             // 
-            // btnRemovePkg
+            // pkgText
             // 
-            this.btnRemovePkg.Location = new System.Drawing.Point(259, 471);
-            this.btnRemovePkg.Name = "btnRemovePkg";
-            this.btnRemovePkg.Size = new System.Drawing.Size(150, 23);
-            this.btnRemovePkg.TabIndex = 1;
-            this.btnRemovePkg.Text = "移除选择包";
-            this.btnRemovePkg.UseVisualStyleBackColor = true;
-            this.btnRemovePkg.Click += new System.EventHandler(this.btnRemovePkg_Click);
+            this.pkgText.Text = "包描述";
+            this.pkgText.Width = 200;
             // 
             // groupBox2
             // 
@@ -125,105 +136,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "检索安装包";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "包关键字：";
-            // 
-            // txtSearchKey
-            // 
-            this.txtSearchKey.Location = new System.Drawing.Point(86, 32);
-            this.txtSearchKey.Name = "txtSearchKey";
-            this.txtSearchKey.Size = new System.Drawing.Size(282, 21);
-            this.txtSearchKey.TabIndex = 1;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(374, 32);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(67, 23);
-            this.btnSearch.TabIndex = 2;
-            this.btnSearch.Text = "检索";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // platformChkBox
-            // 
-            this.platformChkBox.CheckOnClick = true;
-            this.platformChkBox.FormattingEnabled = true;
-            this.platformChkBox.Items.AddRange(new object[] {
-            "x64-windows-static",
-            "x64-windows",
-            "x86-windows-static",
-            "x86-windows"});
-            this.platformChkBox.Location = new System.Drawing.Point(6, 257);
-            this.platformChkBox.Name = "platformChkBox";
-            this.platformChkBox.Size = new System.Drawing.Size(435, 84);
-            this.platformChkBox.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 239);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "目标平台";
-            // 
-            // btnSetup
-            // 
-            this.btnSetup.Location = new System.Drawing.Point(280, 347);
-            this.btnSetup.Name = "btnSetup";
-            this.btnSetup.Size = new System.Drawing.Size(161, 24);
-            this.btnSetup.TabIndex = 7;
-            this.btnSetup.Text = "安装包";
-            this.btnSetup.UseVisualStyleBackColor = true;
-            this.btnSetup.Click += new System.EventHandler(this.btnSetup_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.btnInstallAll);
-            this.groupBox3.Location = new System.Drawing.Point(433, 400);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(447, 112);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "全局操作";
-            // 
-            // btnReflush
-            // 
-            this.btnReflush.Location = new System.Drawing.Point(6, 471);
-            this.btnReflush.Name = "btnReflush";
-            this.btnReflush.Size = new System.Drawing.Size(150, 23);
-            this.btnReflush.TabIndex = 2;
-            this.btnReflush.Text = "刷新列表";
-            this.btnReflush.UseVisualStyleBackColor = true;
-            this.btnReflush.Click += new System.EventHandler(this.btnReflush_Click);
-            // 
-            // btnInstallAll
-            // 
-            this.btnInstallAll.Location = new System.Drawing.Point(8, 29);
-            this.btnInstallAll.Name = "btnInstallAll";
-            this.btnInstallAll.Size = new System.Drawing.Size(149, 23);
-            this.btnInstallAll.TabIndex = 0;
-            this.btnInstallAll.Text = "同步库到VS";
-            this.btnInstallAll.UseVisualStyleBackColor = true;
-            this.btnInstallAll.Click += new System.EventHandler(this.btnInstallAll_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 83);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(263, 12);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "本程序为vcpkg程序管理工具，代码编写:koangel\r\n";
-            // 
             // searchlistView
             // 
             this.searchlistView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -233,6 +145,7 @@
             this.columnHeader3});
             this.searchlistView.FullRowSelect = true;
             this.searchlistView.GridLines = true;
+            this.searchlistView.HideSelection = false;
             this.searchlistView.Location = new System.Drawing.Point(6, 61);
             this.searchlistView.MultiSelect = false;
             this.searchlistView.Name = "searchlistView";
@@ -256,6 +169,95 @@
             this.columnHeader3.Text = "包描述";
             this.columnHeader3.Width = 200;
             // 
+            // btnSetup
+            // 
+            this.btnSetup.Location = new System.Drawing.Point(280, 347);
+            this.btnSetup.Name = "btnSetup";
+            this.btnSetup.Size = new System.Drawing.Size(161, 24);
+            this.btnSetup.TabIndex = 7;
+            this.btnSetup.Text = "安装包";
+            this.btnSetup.UseVisualStyleBackColor = true;
+            this.btnSetup.Click += new System.EventHandler(this.btnSetup_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 239);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "目标平台";
+            // 
+            // platformChkBox
+            // 
+            this.platformChkBox.CheckOnClick = true;
+            this.platformChkBox.FormattingEnabled = true;
+            this.platformChkBox.Items.AddRange(new object[] {
+            "x64-windows-static",
+            "x64-windows",
+            "x86-windows-static",
+            "x86-windows"});
+            this.platformChkBox.Location = new System.Drawing.Point(6, 257);
+            this.platformChkBox.Name = "platformChkBox";
+            this.platformChkBox.Size = new System.Drawing.Size(435, 84);
+            this.platformChkBox.TabIndex = 4;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(374, 32);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(67, 23);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.Text = "检索";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtSearchKey
+            // 
+            this.txtSearchKey.Location = new System.Drawing.Point(86, 32);
+            this.txtSearchKey.Name = "txtSearchKey";
+            this.txtSearchKey.Size = new System.Drawing.Size(282, 21);
+            this.txtSearchKey.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "包关键字：";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.btnInstallAll);
+            this.groupBox3.Location = new System.Drawing.Point(433, 400);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(447, 112);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "全局操作";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 83);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(263, 12);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "本程序为vcpkg程序管理工具，代码编写:koangel\r\n";
+            // 
+            // btnInstallAll
+            // 
+            this.btnInstallAll.Location = new System.Drawing.Point(8, 29);
+            this.btnInstallAll.Name = "btnInstallAll";
+            this.btnInstallAll.Size = new System.Drawing.Size(149, 23);
+            this.btnInstallAll.TabIndex = 0;
+            this.btnInstallAll.Text = "同步库到VS";
+            this.btnInstallAll.UseVisualStyleBackColor = true;
+            this.btnInstallAll.Click += new System.EventHandler(this.btnInstallAll_Click);
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -269,7 +271,7 @@
             this.MaximizeBox = false;
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "vcpkg管理工具集 1.0 by koangel";
+            this.Text = "vcpkg管理工具集 1.2 by koangel";
             this.Load += new System.EventHandler(this.MainFrm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
