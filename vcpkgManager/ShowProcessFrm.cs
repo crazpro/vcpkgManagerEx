@@ -65,23 +65,34 @@ namespace vcpkgManager
             //if(string.IsNullOrEmpty(e.Data) == false)
             //    runLogs.AppendText(e.Data + "\r\n");
 
+
             if (runLogs.InvokeRequired)
             {
                 runLogs.Invoke(new DataReceivedEventHandler(OutputEventHandler), new object[]{ sender,e });
-            }else
+            }
+            else
             {
                 if (!string.IsNullOrEmpty(e.Data))
                 {
+                    string strtmp = FixUtf8GbkMessy(e.Data);
+
                     // 针对内容做清屏
-                    ClearProcess(e.Data);
+                    ClearProcess(strtmp);
 
                     StringBuilder sb = new StringBuilder(this.runLogs.Text);
-                    this.runLogs.Text = sb.AppendLine(e.Data).ToString();
+                    this.runLogs.Text = sb.AppendLine(strtmp).ToString();
                     this.runLogs.SelectionStart = this.runLogs.Text.Length;
                     this.runLogs.ScrollToCaret();
                 }
             }
         }
+
+        public string FixUtf8GbkMessy(string messyStr)
+        {
+            byte[] bs = Encoding.GetEncoding("GBK").GetBytes(messyStr);
+            return Encoding.UTF8.GetString(bs);
+        }
+
 
         private void ClearProcess(string inProc)
         {
